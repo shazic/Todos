@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Todo;
-
+use Session;
 class TodosController extends Controller
 {
     
@@ -32,7 +32,9 @@ class TodosController extends Controller
 
         $todo->todo = $request->todo;
 
-        $todo->save();
+        $result = $todo->save();
+
+        $this->flashMessage( $result, 'New Todo successfully created');
 
         return redirect()->back();
     }
@@ -50,6 +52,10 @@ class TodosController extends Controller
         $todo = Todo::find($id);
 
         $todo->delete();
+
+        $result = $todo->save();
+
+        $this->flashMessage( $result, 'Todo successfully deleted');
 
         return redirect()->back();
     }
@@ -89,6 +95,10 @@ class TodosController extends Controller
 
         $todo->save();
 
+        $result = $todo->save();
+
+        $this->flashMessage( $result, 'Todo successfully updated');
+
         return redirect()->route('todos');
     }
 
@@ -110,6 +120,27 @@ class TodosController extends Controller
             $todo->save();
         }
 
+        $result = $todo->save();
+
+        $this->flashMessage( $result, 'Todo successfully marked as complete');
+
         return redirect()->back();
+    }
+
+    /**
+     * Set a session flash message. Sets 'success' if a successful call, else sets 'failure message.
+     * 
+     * @param boolean,string $event - true or false, $success - the message to be flashed if true, $failure - the message to be flashed if false
+     * 
+     */
+    private function flashMessage($event, $success, $failure='Oops, something went wrong')   {
+        
+        if($event)  {
+
+            Session::flash('success',$success);
+        }
+        else{
+            Session::flash('failed', $failure);
+        }
     }
 }

@@ -11,6 +11,16 @@
 @section('content')
 
     <div class="container">
+        @if( Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+        @if( Session::has('failure'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('failure') }}
+            </div>
+        @endif
         <form method="POST" action="/todo/create">
             {{ csrf_field() }}
             <div class="input-group mb-3">
