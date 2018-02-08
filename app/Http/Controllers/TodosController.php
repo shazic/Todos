@@ -34,7 +34,7 @@ class TodosController extends Controller
 
         $result = $todo->save();
 
-        $this->flashMessage( $result, 'New Todo successfully created');
+        $this->flashMessage( $result, 'New Todo successfully created.');
 
         return redirect()->back();
     }
@@ -55,7 +55,7 @@ class TodosController extends Controller
 
         $result = $todo->save();
 
-        $this->flashMessage( $result, 'Todo successfully deleted');
+        $this->flashMessage( $result, 'Todo successfully deleted.');
 
         return redirect()->back();
     }
@@ -97,7 +97,7 @@ class TodosController extends Controller
 
         $result = $todo->save();
 
-        $this->flashMessage( $result, 'Todo successfully updated');
+        $this->flashMessage( $result, 'Todo successfully updated.');
 
         return redirect()->route('todos');
     }
@@ -122,7 +122,7 @@ class TodosController extends Controller
 
         $result = $todo->save();
 
-        $this->flashMessage( $result, 'Todo successfully marked as complete');
+        $this->flashMessage( $result, 'Todo successfully marked as complete.');
 
         return redirect()->back();
     }
@@ -133,7 +133,7 @@ class TodosController extends Controller
      * @param boolean,string $event - true or false, $success - the message to be flashed if true, $failure - the message to be flashed if false
      * 
      */
-    private function flashMessage($event, $success, $failure='Oops, something went wrong')   {
+    private function flashMessage($event, $success, $failure='Oops, something went wrong!')   {
         
         if($event)  {
 
