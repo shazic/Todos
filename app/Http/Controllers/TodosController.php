@@ -51,9 +51,7 @@ class TodosController extends Controller
 
         $todo = Todo::find($id);
 
-        $todo->delete();
-
-        $result = $todo->save();
+        $result = $todo->delete();
 
         $this->flashMessage( $result, 'Todo successfully deleted.');
 
